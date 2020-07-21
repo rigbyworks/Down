@@ -26,8 +26,8 @@ public class DownDebugTextView: DownTextView {
 
     // MARK: - Life cycle
 
-    public init(frame: CGRect, styler: Styler = DownStyler()) {
-        super.init(frame: frame, styler: styler, layoutManager: DownDebugLayoutManager())
+    public init(frame: CGRect, options: DownOptions = .default, styler: Styler = DownStyler()) {
+        super.init(frame: frame, options: options, styler: styler, layoutManager: DownDebugLayoutManager())
     }
 
     required public init?(coder: NSCoder) {
