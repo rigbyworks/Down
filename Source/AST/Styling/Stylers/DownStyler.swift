@@ -204,6 +204,12 @@ open class DownStyler: Styler {
     }
 
     private func styleGenericInlineCode(in str: NSMutableAttributedString) {
+        let blockBackgroundAttribute = BlockBackgroundColorAttribute(
+            color: colors.codeBlockBackground,
+            inset: codeBlockOptions.containerInset)
+
+        let adjustedParagraphStyle = paragraphStyles.code.inset(by: blockBackgroundAttribute.inset)
+
         str.setAttributes([
             .font: fonts.code,
             .foregroundColor: colors.code])
