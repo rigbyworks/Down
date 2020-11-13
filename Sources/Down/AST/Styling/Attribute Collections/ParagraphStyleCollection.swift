@@ -28,7 +28,7 @@ public protocol ParagraphStyleCollection {
     var heading6: NSParagraphStyle { get }
     var body: NSParagraphStyle { get }
     var code: NSParagraphStyle { get }
-
+    var inlineCode: NSParagraphStyle { get }
 }
 
 public struct StaticParagraphStyleCollection: ParagraphStyleCollection {
@@ -43,6 +43,7 @@ public struct StaticParagraphStyleCollection: ParagraphStyleCollection {
     public var heading6: NSParagraphStyle
     public var body: NSParagraphStyle
     public var code: NSParagraphStyle
+    public var inlineCode: NSParagraphStyle
 
     // MARK: - Life cycle
 
@@ -59,6 +60,10 @@ public struct StaticParagraphStyleCollection: ParagraphStyleCollection {
         codeStyle.paragraphSpacingBefore = 8
         codeStyle.paragraphSpacing = 8
 
+        let inlineCodeStyle = NSMutableParagraphStyle()
+        inlineCodeStyle.paragraphSpacingBefore = 4
+        inlineCodeStyle.paragraphSpacing = 4
+
         heading1 = headingStyle
         heading2 = headingStyle
         heading3 = headingStyle
@@ -67,6 +72,7 @@ public struct StaticParagraphStyleCollection: ParagraphStyleCollection {
         heading6 = headingStyle
         body = bodyStyle
         code = codeStyle
+        inlineCode = inlineCodeStyle
     }
 
 }

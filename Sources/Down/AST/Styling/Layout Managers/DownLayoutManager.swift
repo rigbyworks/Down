@@ -75,6 +75,7 @@ public class DownLayoutManager: NSLayoutManager {
                                         in: characterRange) { (attr: BlockBackgroundColorAttribute, blockRange) in
             let inset = attr.inset
 
+            print("found code block in range \(blockRange): \(NSString(string: textStorage.string).substring(with: blockRange))")
             context.setFillColor(attr.color.cgColor)
 
             let allBlockColorRanges = glyphRanges(for: .blockBackgroundColor,
@@ -98,7 +99,22 @@ public class DownLayoutManager: NSLayoutManager {
                 let maxY = isLineEndOfBlock ? lineUsedRect.maxY + inset : lineUsedRect.maxY
                 let blockRect = CGRect(minX: minX, minY: minY, maxX: maxX, maxY: maxY).translated(by: origin)
 
-                context.fill(blockRect)
+                var cornersToRound: UIRectCorner = []
+
+                if isLineStartOfBlock {
+                    cornersToRound.insert([.topLeft, .topRight])
+                }
+
+                if isLineEndOfBlock {
+                    cornersToRound.insert([.bottomLeft, .bottomRight])
+                }
+
+                let roundedPath = UIBezierPath(roundedRect: blockRect, byRoundingCorners: cornersToRound, cornerRadii: CGSize(width: 6, height: 6))
+
+                print("Adding background with frame \(blockRect) for string: \(NSString(string: textStorage.string).substring(with: lineGlyphRange))")
+
+                roundedPath.fill()
+//                context.fill(blockRect)
             }
         }
     }
