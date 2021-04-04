@@ -1,5 +1,4 @@
 ignore:
-  - "Source/cmark/*"
-  - "Down-Example/*"
-  - "Carthage/*"
-  - "Tests/*"
+  - "Sources/cmark/"
+  - "Down-Example/"
+  - "Tests/"
